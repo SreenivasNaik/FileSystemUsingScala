@@ -1,0 +1,20 @@
+package com.sreenu.scala.opp.fileSystem
+
+import com.sreenu.scala.opp.commands.Command
+import com.sreenu.scala.opp.files.Directory
+
+import java.util.Scanner
+
+object FileSystem extends App {
+  val root = Directory.ROOT
+  var state = State(root,root)
+  val scanner = new Scanner(System.in)
+  while (true){
+
+    state.show
+    val input = scanner.nextLine()
+    state = Command.from(input).apply(state)
+  }
+
+
+}

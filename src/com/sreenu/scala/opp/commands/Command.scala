@@ -2,9 +2,9 @@ package com.sreenu.scala.opp.commands
 
 import com.sreenu.scala.opp.fileSystem.State
 
-trait Command {
-
-  def apply(state:State):State
+trait Command extends (State=>State){
+ // we don;t need to add apply method if we extending Function as they will have apply method
+  //def apply(state:State):State
 
 }
 object Command{
@@ -27,6 +27,8 @@ object Command{
     val tokens:Array[String] = input.split(" ")
 
     if(input.isEmpty || tokens.isEmpty) emptyCommand
+
+      // we can use PATTERN MATCHING HERE
     else if(MKDIR.equals(tokens(0))){
       if(tokens.length <2) inCompleteCommand(MKDIR)
       else new Mkdir(tokens(1))

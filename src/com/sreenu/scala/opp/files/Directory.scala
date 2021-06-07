@@ -4,6 +4,10 @@ import com.sreenu.scala.opp.fileSystem.OurFileSystemException
 
 class Directory(override val parentPath: String, override val name: String,val contents:List[DirEntry])
   extends DirEntry(parentPath,name ) {
+  def removeEntry(entryName: String) =
+    if(!hasEntry(entryName)) this
+    else new Directory(parentPath,name,contents.filter(x=> !x.name.equals(entryName)))
+
   def isRoot: Boolean = parentPath.isEmpty
 
   override def isDirectory: Boolean = true
@@ -41,6 +45,11 @@ class Directory(override val parentPath: String, override val name: String,val c
   def findDecendents(path: List[String]):Directory  =
     if(path.isEmpty) this
     else findEntry(path.head).asDiectory.findDecendents(path.tail)
+
+  def findDecendents(relativePath: String):Directory  =
+    if(relativePath.isEmpty) this
+    else findDecendents(relativePath.split(Directory.SEPARATOR).toList)
+
 
 }
 object Directory{

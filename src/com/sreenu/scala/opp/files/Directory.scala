@@ -1,5 +1,7 @@
 package com.sreenu.scala.opp.files
 
+import com.sreenu.scala.opp.fileSystem.OurFileSystemException
+
 class Directory(override val parentPath: String, override val name: String,val contents:List[DirEntry])
   extends DirEntry(parentPath,name ) {
 
@@ -26,6 +28,8 @@ class Directory(override val parentPath: String, override val name: String,val c
   override def asDiectory: Directory = this
 
   override def getType: String = "Directory"
+
+  override def asFile: File = throw new OurFileSystemException("A directory can't be converted to file")
 
   def hasEntry(name: String): Boolean = findEntry(name)!=null
 

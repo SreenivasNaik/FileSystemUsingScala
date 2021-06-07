@@ -14,7 +14,7 @@ class Directory(override val parentPath: String, override val name: String,val c
 
   override def isFile: Boolean = false
 
-  def replaceEntry(entryName: String, newEntry: Directory): Directory =
+  def replaceEntry(entryName: String, newEntry: DirEntry): Directory =
     new Directory(parentPath,name,contents.filter(e=> !e.name.equals(entryName)):+newEntry)
 
   def findEntry(entryName: String):DirEntry = {

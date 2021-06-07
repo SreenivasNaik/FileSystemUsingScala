@@ -36,10 +36,10 @@ abstract class CreateEntry(name:String) extends Command {
 
       if(path.isEmpty) currentDirectory.addEntry(newEntry)
       else {
-        println("Path:"+path)
+       /* println("Path:"+path)
         println("PathHead:"+path.head)
         println("PathHeadIsEmpty:"+path.head.isEmpty)
-        println("oldRntry::"+currentDirectory.findEntry(path.head))
+        println("oldRntry::"+currentDirectory.findEntry(path.head))*/
         val oldEntry = currentDirectory.findEntry(path.head).asDiectory
         currentDirectory.replaceEntry(oldEntry.name,updateStructure(oldEntry,path.tail,newEntry))
 

@@ -4,6 +4,11 @@ import com.sreenu.scala.opp.fileSystem.OurFileSystemException
 
 class Directory(override val parentPath: String, override val name: String,val contents:List[DirEntry])
   extends DirEntry(parentPath,name ) {
+  def isRoot: Boolean = parentPath.isEmpty
+
+  override def isDirectory: Boolean = true
+
+  override def isFile: Boolean = false
 
   def replaceEntry(entryName: String, newEntry: Directory): Directory =
     new Directory(parentPath,name,contents.filter(e=> !e.name.equals(entryName)):+newEntry)

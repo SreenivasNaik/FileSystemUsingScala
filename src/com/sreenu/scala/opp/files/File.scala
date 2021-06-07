@@ -2,7 +2,7 @@ package com.sreenu.scala.opp.files
 
 import com.sreenu.scala.opp.fileSystem.OurFileSystemException
 
-class File(override val parentPath: String,override val name: String,conents:String)
+class File(override val parentPath: String,override val name: String,val conents:String)
   extends DirEntry(parentPath ,name ) {
   def setConents(newContent: String): File = new File(parentPath,name,newContent)
 
